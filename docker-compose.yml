@@ -1,0 +1,25 @@
+version: '3.5'
+services: 
+  elasticsearch:
+    image: elasticsearch:5.6.8-alpine
+    volumes: 
+      - ./config/:/usr/share/elasticsearch/config
+      - ./esdata/:/usr/share/elasticsearch/data
+    ports: 
+      - 9200:9200
+      - 9300:9300
+    restart: always
+
+  kibana:
+    image: kibana
+    ports:
+      - 5601:5601
+    restart: always
+
+  # logstash:
+  #   image: logstash:5.6.8-alpine
+  #   volumes: 
+  #     - ./logstash:/config-dir
+  #     - ./logstash/pipeline/:/usr/share/logstash/pipeline/
+  #     - ./logstash/settings/:/usr/share/logstash/config/
+  #   restart: always
